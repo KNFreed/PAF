@@ -8,7 +8,7 @@ def parser():
     parser = argparse.ArgumentParser()
     parser.add_argument("INPUT", help="Name of the unfiltered audio.")
     parser.add_argument("-l", "--lowpass", help="Low pass filter. Default value: 5000.", type=int)
-    parser.add_argument("-h", "--highpass", help="High pass filter. Default value: 5000.", type=int)
+    parser.add_argument("-hi", "--highpass", help="High pass filter. Default value: 5000.", type=int)
     parser.add_argument("-bp", "--bandpass", help="Band pass filter. Default value: [5000,10000].", type=int)
     parser.add_argument("-bs", "--bandstop", help="Band Stop filter. Default value: [5000,10000].", type=int)
     parser.add_argument("-o", "--output", help="Name of the output wav file. Default value: output.wav.")
@@ -16,7 +16,7 @@ def parser():
     args = parser.parse_args()
 
     filterfreq[0] = 5000
-    output  = "output.wav"
+    output = "output.wav"
 
     if args.lowpass != args.highpass != args.bandpass != args.bandstop:
         pass
