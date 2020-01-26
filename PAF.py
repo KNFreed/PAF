@@ -103,7 +103,6 @@ def filter(inpt, output, filtertype, samplingrate, cutoff, nyqfreq):
     plt.title('Freq visualisation', fontsize=14)
     plt.savefig('comparison2.png')
     # Original only
-    f, FFT = signal.periodogram(audio, samplingrate)
     plt.plot(f, FFT)
     plt.xlabel('Freq (Hz)')
     plt.ylabel('Module')
@@ -113,7 +112,6 @@ def filter(inpt, output, filtertype, samplingrate, cutoff, nyqfreq):
     plt.title('Freq visualisation', fontsize=14)
     plt.savefig('original.png')
     # Filtered only
-    e, EET = signal.periodogram(filteredaudio, samplingrate)
     plt.plot(e, EET)
     plt.xlabel('Freq (Hz)')
     plt.ylabel('Module')
