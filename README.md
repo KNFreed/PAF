@@ -23,11 +23,11 @@ chmod a+x install.sh
 ```
 python3 PAF.py [IMPUT FILE] -filter -flags
 ```
-List of all filters : 
-"-l", "--lowpass": Low pass filter. Default value: 5000.
+###List of all filters : 
+```"-l", "--lowpass": Low pass filter. Default value: 5000.
 "-hi", "--highpass":High pass filter. Default value: 5000.
 "-bp", "--bandpass": Band pass filter. Default value: 5000 10000.
 "-bs", "--bandstop": Band Stop filter. Default value: 5000 10000.
 Available flags :
 "-o", "--output": Name of the output wav file. Default value: output.wav.
-"-s", "--sampling": Sampling rate. Default value: same as input.
+"-s", "--sampling": Sampling rate. Default value: same as input.```
