@@ -1,6 +1,8 @@
 # PAF
 PAF - A Python Audio Filter
 
+PAF is a Python Audio Filter that filters small files and creates graphs and a filtered sound out of it.
+
 ## 1. Update everything and install Git
 
 ```
