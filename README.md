@@ -23,7 +23,7 @@ chmod a+x install.sh
 ```
 python3 PAF.py [IMPUT FILE] -filter -flags
 ```
-###List of all filters : 
+### List of all filters : 
 ```"-l", "--lowpass": Low pass filter. Default value: 5000.
 "-hi", "--highpass":High pass filter. Default value: 5000.
 "-bp", "--bandpass": Band pass filter. Default value: 5000 10000.
