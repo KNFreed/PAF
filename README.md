@@ -11,7 +11,6 @@ sudo apt install git-core
 ## 2. Download the source files and execute the script
 
 ```
-cd /srv
 sudo git clone https://github.com/KNFreed/PAF
 sudo chown -R $(whoami): PAF/
 cd PAF
