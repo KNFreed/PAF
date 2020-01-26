@@ -15,32 +15,29 @@ def parser():
     parser.add_argument("-s", "--sampling", help="Sampling rate. Default value: same as input.", type=int)
     args = parser.parse_args()
 
-    filterfreq[0] = 5000
+    filterfreq = [5000]
     output = "output.wav"
-
-    if args.lowpass != args.highpass != args.bandpass != args.bandstop:
-        pass
-    else:
-        print("You can only choose one filter.")
-        time.sleep(2)
-        sys.exit()
 
     if args.output:
         output = args.output
-    if args.lowpass:
+    else if args.lowpass:
         filterfreq[0] = args.lowpass
         filtertype = "lowpass"
-    if args.highpass:
+    else if args.highpass:
         filterfreq[0] = args.highpass
         filtertype = "highpass"
-    if args.bandpass:
+    else if args.bandpass:
         filterfreq[1] = [10000]
         filterfreq = args.bandpass
         filtertype = "bandpass"
-    if args.bandstop:
+    else if args.bandstop:
         filterfreq[1] = [10000]
         filterfreq = args.bandstop
         filtertype = "bandstop"
+    else :
+        print("You have to choose a filter.")
+        time.sleep(2)
+        sys.exit()
 
     original = wave.open(args.INPUT, 'rb')
     samplingrate = wave.Wave_read.getframerate(original)
