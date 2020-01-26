@@ -1,9 +1,8 @@
 #!/usr/bin/env python
 from scipy import signal
 from scipy.io.wavfile import read, write
-import numpy as np
 import matplotlib.pyplot as plt
-import wave, math, array, argparse, sys, timeit, time
+import wave, argparse, sys, time
 
 def parser():
     parser = argparse.ArgumentParser()
@@ -74,7 +73,7 @@ def parser():
 def filter(inpt, output, filtertype, samplingrate, cutoff, nyqfreq):
     input_data = read(inpt)
     audio = input_data[1]
-    b, a = signal.butter(8, cutoff, btype=filtertype, audio)
+    b, a = signal.butter(8, cutoff, btype=filtertype)
     filteredaudio = signal.filtfilt(b, a, audio)
     write(output, samplingrate, filteredaudio)
     write("output.wav", samplingrate, output)

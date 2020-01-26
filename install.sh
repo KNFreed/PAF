@@ -3,5 +3,6 @@
 # Updates everything
 sudo apt-get update -y
 sudo apt-get upgrade -y
+sudo apt install python3-pip pkg-config python3-matplotlib -y
 # Install needed libraries
-$1/bin/pip install -r requirements.txt
+pip3 install -r requirements.txt

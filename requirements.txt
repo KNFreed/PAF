@@ -1,1 +1,5 @@
-wave, argparse, matplotlib, numpy, scipy, time
+wave
+argparse
+numpy
+scipy
+time
