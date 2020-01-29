@@ -1,4 +1,5 @@
 #!/usr/bin/env python
+
 from scipy import signal
 from scipy.io.wavfile import read, write
 import numpy as np
@@ -42,13 +43,11 @@ def parser():
     samplingrate = wave.Wave_read.getframerate(original)
     nyqfreq = samplingrate / 2
     original.close()
-    print(filterfreq[0])
-    print(filtertype)
     if (filtertype == "bandstop") or (filtertype =="bandpass"):
         cutoff = [filterfreq[0]/nyqfreq, filterfreq[1]/nyqfreq]
-        print(cutoff)
     else:
         cutoff = filterfreq[0] / nyqfreq
+        cutoffreq = filterfreq[0]
 
     if args.sampling:
         samplingrate = args.sampling
@@ -65,18 +64,15 @@ def parser():
     if args.bandstop :
         print('Band stop filter: %d - %d.' % (filterfreq[0],filterfreq[1]))
 
-    return (args.INPUT, output, filtertype, samplingrate, cutoff, nyqfreq)
+    return (args.INPUT, output, filtertype, samplingrate, cutoff, nyqfreq, cutoffreq)
 
-def filter(inpt, output, filtertype, samp, cutoff, nyqfreq):
+def filter(inpt, output, filtertype, samp, cutoff, nyqfreq, cutoffreq):
     input_data = read(inpt)
     audio = input_data[1]
     b, a = signal.butter(5, cutoff, btype=filtertype)
     filteredaudio = signal.lfilter(b, a, audio)
 
-
     ### Screens
-<<<<<<< Updated upstream
-=======
     #Bode
     w, H = signal.freqz(b, a, worN=8000)
     w *= samp / (2 * np.pi)  # Convert from rad/sample to Hz
@@ -108,7 +104,6 @@ def filter(inpt, output, filtertype, samp, cutoff, nyqfreq):
     plt.savefig('phase.png')
     plt.close()
 
->>>>>>> Stashed changes
     #Comparison
     plt.plot(audio, label='Original Audio')
     plt.plot(filteredaudio, label='Filtered Audio')
