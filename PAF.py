@@ -45,6 +45,7 @@ def parser():
     original.close()
     if (filtertype == "bandstop") or (filtertype =="bandpass"):
         cutoff = [filterfreq[0]/nyqfreq, filterfreq[1]/nyqfreq]
+        cutoffreq = filterfreq
     else:
         cutoff = filterfreq[0] / nyqfreq
         cutoffreq = filterfreq[0]
@@ -82,7 +83,11 @@ def filter(inpt, output, filtertype, samp, cutoff, nyqfreq, cutoffreq):
     plt.ylabel('Magnitude [dB]')
     plt.xlim(0, samp / 2)
     plt.ylim(-80, 6)
-    plt.axvline(cutoffreq, color='red')
+    if filtertype == "lowpass" or filtertype == "highpass":
+        plt.axvline(cutoffreq, color='red')
+    else :
+        plt.axvline(cutoffreq[0], color='red')
+        plt.axvline(cutoffreq[1], color='red')
     plt.axhline(-3, linewidth=0.8, color='black', linestyle=':')
     plt.grid()
     plt.savefig('bode.png')
@@ -99,7 +104,11 @@ def filter(inpt, output, filtertype, samp, cutoff, nyqfreq, cutoffreq):
     plt.xlim(0, samp / 2)
     plt.ylim(-360, 0)
     plt.yticks([-360, -270, -180, -90, 0])
-    plt.axvline(cutoffreq, color='red')
+    if filtertype == "lowpass" or filtertype == "highpass":
+        plt.axvline(cutoffreq, color='red')
+    else:
+        plt.axvline(cutoffreq[0], color='red')
+        plt.axvline(cutoffreq[1], color='red')
     plt.grid()
     plt.savefig('phase.png')
     plt.close()
