@@ -75,6 +75,40 @@ def filter(inpt, output, filtertype, samp, cutoff, nyqfreq):
 
 
     ### Screens
+<<<<<<< Updated upstream
+=======
+    #Bode
+    w, H = signal.freqz(b, a, worN=8000)
+    w *= samp / (2 * np.pi)  # Convert from rad/sample to Hz
+    plt.title('Bode Diagram')
+    H_dB = 20 * np.log10(abs(H))  # Convert to dB
+    plt.plot(w, H_dB)
+    plt.ylabel('Magnitude [dB]')
+    plt.xlim(0, samp / 2)
+    plt.ylim(-80, 6)
+    plt.axvline(cutoffreq, color='red')
+    plt.axhline(-3, linewidth=0.8, color='black', linestyle=':')
+    plt.grid()
+    plt.savefig('bode.png')
+    plt.close()
+
+    # Plot the phase response
+    phi = np.angle(H)  # Argument of H
+    phi = np.unwrap(phi)  # Remove discontinuities
+    phi *= 180 / np.pi  # convert to degrees
+    plt.suptitle('Bode Diagram')
+    plt.semilogx(w,phi)
+    plt.xlabel('Frequency [Hz]')
+    plt.ylabel('Phase [°]')
+    plt.xlim(0, samp / 2)
+    plt.ylim(-360, 0)
+    plt.yticks([-360, -270, -180, -90, 0])
+    plt.axvline(cutoffreq, color='red')
+    plt.grid()
+    plt.savefig('phase.png')
+    plt.close()
+
+>>>>>>> Stashed changes
     #Comparison
     plt.plot(audio, label='Original Audio')
     plt.plot(filteredaudio, label='Filtered Audio')
@@ -99,6 +133,7 @@ def filter(inpt, output, filtertype, samp, cutoff, nyqfreq):
     plt.title('Freq visualisation', fontsize=14)
     plt.savefig('comparison2.png')
     plt.close()
+
     # Original only
     plt.plot(f, FFT)
     plt.xlabel('Freq (Hz)')
@@ -119,6 +154,8 @@ def filter(inpt, output, filtertype, samp, cutoff, nyqfreq):
     plt.title('Freq visualisation', fontsize=14)
     plt.savefig('filtered.png')
     plt.close()
+
+    #Audio spectrum of filtered audio
     Outputfile = np.fft.ifft(FFT)
     plt.plot(Outputfile)
     plt.ylabel('Amplitude')
@@ -127,6 +164,7 @@ def filter(inpt, output, filtertype, samp, cutoff, nyqfreq):
     plt.title('Signal after filter', fontsize=14)
     plt.savefig('Signal.png')
     plt.close()
+
     Outputfile = Outputfile.astype('uint8')
     write(output, samp, Outputfile)
 
